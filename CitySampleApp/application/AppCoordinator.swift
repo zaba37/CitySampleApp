@@ -17,7 +17,7 @@ class AppCoordinator {
     func start(window: UIWindow?) {
         guard let window = window else { return }
         sceneCoordinator.set(window: window)
-        sceneCoordinator.transition(to: WeatherScene.cityList, type: .root)
+        sceneCoordinator.transition(to: CityScene.cityList, type: .root)
     }
 
     

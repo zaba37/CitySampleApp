@@ -1,5 +1,5 @@
 //
-//  NetworkType.swift
+//  CityCellViewModelType.swift
 //  CitySampleApp
 //
 //  Created by Krystian Zabicki on 21/06/2020.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol NetworkType {
-    func requestData(request: RouterType, completion: @escaping (Result<Data, Error>) -> Void)
+protocol CityCellViewModelType {
+    var cityName: String { get }
+    var previewUrl: String { get } 
 }

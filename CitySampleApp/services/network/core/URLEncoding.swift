@@ -14,7 +14,7 @@ protocol EncodingType {
 
 class URLEncoding: EncodingType {
     private let contentTypeHeaderKey = "Content-Type"
-    private let urlEncodedHeaderValue = "application/x-www-form-urlencoded; charset=utf-8"
+    private let urlEncodedHeaderValue = "application/json; charset=utf-8"
     
     func encode(_ urlRequest: URLRequest, with parameters: JSON?) throws -> URLRequest {
         guard let parameters = parameters else { return urlRequest }
