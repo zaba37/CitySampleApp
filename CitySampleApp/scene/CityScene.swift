@@ -11,6 +11,7 @@ import UIKit
 enum CityScene {
     case cityList
     case cityDetails(city: City)
+    case visitorsList(visitors: [Visitor])
 }
 
 extension CityScene: SceneType {
@@ -20,6 +21,8 @@ extension CityScene: SceneType {
             return Resolver.root.resolve(CityListViewController.self)
         case .cityDetails(let city):
             return Resolver.root.resolve(CityDetailsViewController.self, arg: city)
+        case .visitorsList(let visitors):
+            return Resolver.root.resolve(VisitorListViewController.self, arg: visitors)
         }
     }
 }

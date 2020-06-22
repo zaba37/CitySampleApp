@@ -1,20 +1,21 @@
 //
-//  CityListViewController.swift
+//  VisitorListViewController.swift
 //  CitySampleApp
 //
-//  Created by Krystian Zabicki on 21/06/2020.
+//  Created by Krystian Zabicki on 22/06/2020.
 //  Copyright © 2020 kzdev. All rights reserved.
 //
 
 import UIKit
 
-class CityListViewController: BaseViewController, BindableView {
+class VisitorListViewController: BaseViewController, BindableView {
     
     //MARK: - Injected properties
-    @Injected private var viewModel: CityListViewModelType
+    @Injected var viewModel: VisitorListViewModelType
     
     //MARK: - Private properties
     private var tableView: UITableView!
+    private var closeButton: UIButton!
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -26,12 +27,23 @@ class CityListViewController: BaseViewController, BindableView {
     
     //MARK: - UISetup
     private func createView() {
+        closeButton = UIButton()
+        closeButton.setTitle("Close".localized, for: .normal)
+        closeButton.setTitleColor(.black, for: .normal)
+        view.addSubview(closeButton)
+        closeButton.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                           paddingTop: 8,
+                           trailing: view.safeAreaLayoutGuide.trailingAnchor,
+                           paddingRight: 4,
+                           width: 60,
+                           height: 20)
+        
         tableView = UITableView()
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
         view.addSubview(tableView)
-        tableView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                         paddingTop: 0,
+        tableView.anchor(top: closeButton.bottomAnchor,
+                         paddingTop: 4,
                          leading: view.safeAreaLayoutGuide.leadingAnchor,
                          paddingLeft: 0,
                          bottom: view.safeAreaLayoutGuide.bottomAnchor,
@@ -43,11 +55,10 @@ class CityListViewController: BaseViewController, BindableView {
     }
     
     private func setupUI() {
-        title = "Cities list".localized
-        
         viewModel.cellViewModelTypes.forEach { $0.registerCell(tableView: tableView) }
-        tableView.delegate = self
         tableView.dataSource = self
+        
+        closeButton.addTarget(self, action: #selector(VisitorListViewController.dismisAction), for: .touchUpInside)
     }
     
     //MARK: - Data binding
@@ -55,31 +66,22 @@ class CityListViewController: BaseViewController, BindableView {
         viewModel.didUpdate = { [weak self] in
             self?.tableView.reloadData()
         }
-        
-        viewModel.didError = { [weak self] error in
-            self?.showAlert(message: error.localizedDescription, cancelTitle: "Cancel".localized)
-        }
-
-        viewModel.loadData()
     }
 
+    //MARK: - Actions
+    @objc func dismisAction() {
+        dismiss(animated: true, completion: nil)
+    }
 }
 
 //MARK: - UITableViewDataSource
-extension CityListViewController: UITableViewDataSource {
+extension VisitorListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.citiesCount
+        return viewModel.visitorsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return viewModel.cityViewModel(atRow: indexPath.row)?.dequeueCell(tableView: tableView, atIndexPath: indexPath) ?? UITableViewCell()
+        return viewModel.visitorViewModel(atRow: indexPath.row)?.dequeueCell(tableView: tableView, atIndexPath: indexPath) ?? UITableViewCell()
     }
 }
 
-//MARK: - UITableViewDelegate
-extension CityListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.onSelect(row: indexPath.row)
-    }
-}

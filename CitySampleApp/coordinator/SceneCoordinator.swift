@@ -35,6 +35,11 @@ class SceneCoordinator: NSObject, SceneCoordinatorType {
             }
             navigationController.pushViewController(viewController, animated: true)
             currentViewController = viewController
+        case .modal:
+            guard let navigationController = currentViewController?.navigationController else {
+                return
+            }
+            navigationController.present(viewController, animated: true)
         }
     }
     

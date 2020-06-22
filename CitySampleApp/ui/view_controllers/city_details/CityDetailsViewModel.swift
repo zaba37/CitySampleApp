@@ -9,6 +9,7 @@
 import Foundation
 
 class CityDetailsViewModel: CityDetailsViewModelType {
+    
     //MARK: - Injected properties
     @Injected private var network: CityNetworkType
     @Injected private var sceneCoordinator: SceneCoordinatorType
@@ -58,6 +59,6 @@ class CityDetailsViewModel: CityDetailsViewModelType {
     
     //MARK: - Actions
     func showVisitorsList() {
-        
+        sceneCoordinator.transition(to: CityScene.visitorsList(visitors: visitors), type: .modal)
     }
 }

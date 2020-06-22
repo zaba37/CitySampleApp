@@ -60,6 +60,12 @@
 		27731E4C24A0207700CC4FDD /* CityDetailsViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E4B24A0207700CC4FDD /* CityDetailsViewModelType.swift */; };
 		27731E4E24A0787500CC4FDD /* DetailUpdateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E4D24A0787500CC4FDD /* DetailUpdateType.swift */; };
 		27731E5024A08F4600CC4FDD /* Rating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E4F24A08F4600CC4FDD /* Rating.swift */; };
+		27731E5324A091BE00CC4FDD /* VisitorListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5224A091BE00CC4FDD /* VisitorListViewController.swift */; };
+		27731E5524A091C700CC4FDD /* VisitorListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5424A091C700CC4FDD /* VisitorListViewModel.swift */; };
+		27731E5724A091CE00CC4FDD /* VisitorListViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5624A091CE00CC4FDD /* VisitorListViewModelType.swift */; };
+		27731E5A24A0922800CC4FDD /* VisitorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5924A0922800CC4FDD /* VisitorTableViewCell.swift */; };
+		27731E5C24A0923400CC4FDD /* VisitorCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5B24A0923400CC4FDD /* VisitorCellViewModel.swift */; };
+		27731E5E24A0924800CC4FDD /* VisitorCellViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27731E5D24A0924800CC4FDD /* VisitorCellViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,6 +145,12 @@
 		27731E4B24A0207700CC4FDD /* CityDetailsViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityDetailsViewModelType.swift; sourceTree = "<group>"; };
 		27731E4D24A0787500CC4FDD /* DetailUpdateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailUpdateType.swift; sourceTree = "<group>"; };
 		27731E4F24A08F4600CC4FDD /* Rating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rating.swift; sourceTree = "<group>"; };
+		27731E5224A091BE00CC4FDD /* VisitorListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorListViewController.swift; sourceTree = "<group>"; };
+		27731E5424A091C700CC4FDD /* VisitorListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorListViewModel.swift; sourceTree = "<group>"; };
+		27731E5624A091CE00CC4FDD /* VisitorListViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorListViewModelType.swift; sourceTree = "<group>"; };
+		27731E5924A0922800CC4FDD /* VisitorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorTableViewCell.swift; sourceTree = "<group>"; };
+		27731E5B24A0923400CC4FDD /* VisitorCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorCellViewModel.swift; sourceTree = "<group>"; };
+		27731E5D24A0924800CC4FDD /* VisitorCellViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitorCellViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +339,7 @@
 		27731DEB249D5AE400CC4FDD /* services */ = {
 			isa = PBXGroup;
 			children = (
+				27731E5F24A0A3E500CC4FDD /* database */,
 				27731DEC249D5AEA00CC4FDD /* network */,
 			);
 			path = services;
@@ -384,6 +397,7 @@
 		27731DF1249D5B2000CC4FDD /* cells */ = {
 			isa = PBXGroup;
 			children = (
+				27731E5824A0921800CC4FDD /* visitors */,
 				27731E23249FD57F00CC4FDD /* city */,
 			);
 			path = cells;
@@ -451,8 +465,28 @@
 		27731E5124A090A800CC4FDD /* visitors_list */ = {
 			isa = PBXGroup;
 			children = (
+				27731E5224A091BE00CC4FDD /* VisitorListViewController.swift */,
+				27731E5424A091C700CC4FDD /* VisitorListViewModel.swift */,
+				27731E5624A091CE00CC4FDD /* VisitorListViewModelType.swift */,
 			);
 			path = visitors_list;
+			sourceTree = "<group>";
+		};
+		27731E5824A0921800CC4FDD /* visitors */ = {
+			isa = PBXGroup;
+			children = (
+				27731E5924A0922800CC4FDD /* VisitorTableViewCell.swift */,
+				27731E5B24A0923400CC4FDD /* VisitorCellViewModel.swift */,
+				27731E5D24A0924800CC4FDD /* VisitorCellViewModelType.swift */,
+			);
+			path = visitors;
+			sourceTree = "<group>";
+		};
+		27731E5F24A0A3E500CC4FDD /* database */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = database;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -602,12 +636,14 @@
 				27731E02249FC7D500CC4FDD /* Network.swift in Sources */,
 				27731E3D24A0002700CC4FDD /* CityScene.swift in Sources */,
 				27731E0D249FCEEC00CC4FDD /* City.swift in Sources */,
+				27731E5724A091CE00CC4FDD /* VisitorListViewModelType.swift in Sources */,
 				27731E11249FCF7E00CC4FDD /* CityRouter.swift in Sources */,
 				27731DE1249D588F00CC4FDD /* Assembler.swift in Sources */,
 				27731E4A24A0206F00CC4FDD /* CityDetailsViewModel.swift in Sources */,
 				27731E4324A01BBB00CC4FDD /* CityRatingRequestModel.swift in Sources */,
 				27731E0F249FCF5700CC4FDD /* CityNetwork.swift in Sources */,
 				27731DDF249D588500CC4FDD /* Factory.swift in Sources */,
+				27731E5324A091BE00CC4FDD /* VisitorListViewController.swift in Sources */,
 				27731E21249FD2BD00CC4FDD /* BaseViewController.swift in Sources */,
 				27731E4E24A0787500CC4FDD /* DetailUpdateType.swift in Sources */,
 				27731E1E249FD23500CC4FDD /* CityListViewModelType.swift in Sources */,
@@ -617,7 +653,9 @@
 				27731E0B249FC87900CC4FDD /* JSON.swift in Sources */,
 				27731E04249FC7EB00CC4FDD /* NetworkType.swift in Sources */,
 				27731E37249FE7B700CC4FDD /* UIViewControllerExtension.swift in Sources */,
+				27731E5E24A0924800CC4FDD /* VisitorCellViewModelType.swift in Sources */,
 				27731E3B249FECE800CC4FDD /* UIImageViewExtension.swift in Sources */,
+				27731E5A24A0922800CC4FDD /* VisitorTableViewCell.swift in Sources */,
 				27731DFC249D5D7F00CC4FDD /* SceneType.swift in Sources */,
 				27731DF4249D5C7500CC4FDD /* AppCoordinator.swift in Sources */,
 				27731E13249FD03D00CC4FDD /* AppConfiguration.swift in Sources */,
@@ -625,9 +663,11 @@
 				27731DF8249D5D4900CC4FDD /* SceneCoordinatorType.swift in Sources */,
 				27731DFE249FC7A300CC4FDD /* NetworkError.swift in Sources */,
 				27731E25249FD58D00CC4FDD /* CityTableViewCell.swift in Sources */,
+				27731E5524A091C700CC4FDD /* VisitorListViewModel.swift in Sources */,
 				27731E09249FC83200CC4FDD /* RouterType.swift in Sources */,
 				27731E1C249FD22A00CC4FDD /* CityListViewModel.swift in Sources */,
 				27731E4C24A0207700CC4FDD /* CityDetailsViewModelType.swift in Sources */,
+				27731E5C24A0923400CC4FDD /* VisitorCellViewModel.swift in Sources */,
 				27731E06249FC80200CC4FDD /* URLEncoding.swift in Sources */,
 				27731DDB249D586900CC4FDD /* Resolver.swift in Sources */,
 				27731E3F24A010DB00CC4FDD /* UIImageExtension.swift in Sources */,

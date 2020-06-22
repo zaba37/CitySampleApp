@@ -37,10 +37,6 @@ struct Assembler {
             return Network()
         }
 
-//        resolver.register(WeatherNetworkType.self) { r in
-//            return WeatherNetwork()
-//        }
-
         resolver.register(CityNetworkType.self) { r in
             let sessionConfig = URLSessionConfiguration.ephemeral
             //sessionConfig.protocolClasses = [UrlProtocolMock.self]
@@ -65,6 +61,10 @@ struct Assembler {
             return CityDetailsViewModel(city: city)
         }
         
+        resolver.register(VisitorListViewModelType.self) { (r, visitors: [Visitor]) in
+            return VisitorListViewModel(visitors: visitors)
+        }
+        
         //MARK: - ViewControllers
         resolver.register(CityListViewController.self) { r in
             return CityListViewController()
@@ -77,5 +77,11 @@ struct Assembler {
             return vc
         }
         
+        resolver.register(VisitorListViewController.self) { (r, visitors: [Visitor]) in
+            let vc = VisitorListViewController()
+            let vm = r.resolve(VisitorListViewModelType.self, arg: visitors)!
+            vc.$viewModel.wrappedValue = vm
+            return vc
+        }
     }
 }

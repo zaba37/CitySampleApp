@@ -6,8 +6,6 @@
 //  Copyright © 2020 kzdev. All rights reserved.
 //
 
-import Foundation
-
 import UIKit
 
 class CityCellViewModel: CityCellViewModelType {

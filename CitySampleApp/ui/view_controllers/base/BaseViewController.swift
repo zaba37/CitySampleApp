@@ -30,7 +30,7 @@ class BaseViewController: UIViewController {
         if #available(iOS 13, *) {
             view.backgroundColor = .systemBackground
         } else {
-            view.backgroundColor = .clear
+            view.backgroundColor = .white
         }
     }
     

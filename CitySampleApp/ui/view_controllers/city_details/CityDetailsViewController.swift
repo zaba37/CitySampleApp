@@ -74,6 +74,10 @@ class CityDetailsViewController: BaseViewController, BindableView {
     private func setupUI() {
         title = viewModel.cityName
         imageView.loadImageUsingCache(withUrl: viewModel.previewUrl)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(CityDetailsViewController.showVisitorsList))
+        visitorsLabel.addGestureRecognizer(tap)
+        visitorsLabel.isUserInteractionEnabled = true
     }
     
     //MARK: - Data binding
@@ -101,5 +105,10 @@ class CityDetailsViewController: BaseViewController, BindableView {
         }
 
         viewModel.loadData()
+    }
+    
+    //MARK: - Actions
+    @objc func showVisitorsList() {
+        viewModel.showVisitorsList()
     }
 }
