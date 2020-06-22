@@ -26,6 +26,10 @@ class CityCellViewModel: CityCellViewModelType {
     var previewUrl: String {
         return city.previewUrl
     }
+    
+    var isFavorite: Bool {
+        return city.isFavorite
+    }
 }
 
 extension CityCellViewModel: CellViewModelType {

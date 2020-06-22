@@ -15,7 +15,7 @@ class SceneCoordinator: NSObject, SceneCoordinatorType {
     private var window: UIWindow?
     private var currentViewController: UIViewController?
     
-    override init() {}
+    private override init() {}
     
     func transition(to scene: SceneType, type: SceneTransitionType) {
         guard let viewController = scene.viewController() else {

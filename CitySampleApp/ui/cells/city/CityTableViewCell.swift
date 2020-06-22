@@ -26,9 +26,10 @@ class CityTableViewCell: UITableViewCell {
         let label = UILabel()
         return label
     }()
-    private let favButton: UIButton = {
-        let button = UIButton()
-        return button
+    private let favImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
     }()
     
     //MARK: - Life cycle
@@ -65,21 +66,23 @@ class CityTableViewCell: UITableViewCell {
                          bottom: cellBottomContentView.bottomAnchor,
                          paddingBottom: 4)
         
-        cellBottomContentView.addSubview(favButton)
-        favButton.anchor(top: cellBottomContentView.topAnchor,
-                         paddingTop: 2,
-                         leading: nameLabel.trailingAnchor,
-                         bottom: cellBottomContentView.bottomAnchor,
-                         paddingBottom: 2,
-                         trailing: cellBottomContentView.trailingAnchor,
-                         width: 36,
-                         height: 36)
+        cellBottomContentView.addSubview(favImageView)
+        favImageView.anchor(top: cellBottomContentView.topAnchor,
+                            paddingTop: 2,
+                            leading: nameLabel.trailingAnchor,
+                            bottom: cellBottomContentView.bottomAnchor,
+                            paddingBottom: 2,
+                            trailing: cellBottomContentView.trailingAnchor,
+                            width: 36,
+                            height: 36)
     }
     
     //MARK: - Setup
     func setup(with viewModel: CityCellViewModelType) {
         nameLabel.text = viewModel.cityName
         cellImageView.loadImageUsingCache(withUrl: viewModel.previewUrl)
-        favButton.setImage(UIImage.favoriteImage, for: .normal)
+        
+        let image = viewModel.isFavorite ? UIImage.favoriteImage : UIImage.unfavoriteImage
+        favImageView.image = image
     }
 }

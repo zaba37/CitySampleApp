@@ -24,11 +24,16 @@ class CityListViewController: BaseViewController, BindableView {
         bindViewModel()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        viewModel.onViewDidAppear()
+    }
+    
     //MARK: - UISetup
     private func createView() {
         tableView = UITableView()
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
+        tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
                          paddingTop: 0,
@@ -48,21 +53,34 @@ class CityListViewController: BaseViewController, BindableView {
         viewModel.cellViewModelTypes.forEach { $0.registerCell(tableView: tableView) }
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let filterButton = UIBarButtonItem(image: UIImage.unfavoriteImage,
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(CityListViewController.favoriteFilterAction))
+        navigationItem.rightBarButtonItem = filterButton
     }
     
     //MARK: - Data binding
     func bindViewModel() {
         viewModel.didUpdate = { [weak self] in
+            self?.hideLoading()
             self?.tableView.reloadData()
         }
         
         viewModel.didError = { [weak self] error in
+            self?.hideLoading()
             self?.showAlert(message: error.localizedDescription, cancelTitle: "Cancel".localized)
         }
 
+        showLoading()
         viewModel.loadData()
     }
 
+    //MARK: - Action
+    @objc func favoriteFilterAction() {
+        viewModel.toggleFavoriteFilter()
+    }
 }
 
 //MARK: - UITableViewDataSource

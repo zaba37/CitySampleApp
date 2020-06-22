@@ -18,6 +18,11 @@ struct Assembler {
             return AppCoordinator()
         }
         
+        //MARK: - Database
+        resolver.register(DatabaseServiceType.self) { r in
+            return DatabaseService.shared
+        }
+        
         //MARK: - Network
         resolver.register(URLSession.self) { r in
             return URLSession(configuration: URLSessionConfiguration.ephemeral)

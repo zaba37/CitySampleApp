@@ -1,5 +1,5 @@
 //
-//  DetailUpdateType.swift
+//  DatabaseServiceType.swift
 //  CitySampleApp
 //
 //  Created by Krystian Zabicki on 22/06/2020.
@@ -8,8 +8,7 @@
 
 import Foundation
 
-enum DetailUpdateType {
-    case rating
-    case visitors
-    case favoriteSave
+protocol DatabaseServiceType {
+    func saveFavorite(model: City) throws
+    func isFavorite(model: City) -> Bool
 }

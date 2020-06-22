@@ -30,7 +30,14 @@ class VisitorTableViewCell: UITableViewCell {
     
     private func addSubviews() {
         addSubview(nameLabel)
-        nameLabel.anchor(top: topAnchor, paddingTop: 16, leading: leadingAnchor, paddingLeft: 16, bottom: bottomAnchor, paddingBottom: 16, trailing: trailingAnchor, paddingRight: 16, width: 0, height: 0)
+        nameLabel.anchor(top: topAnchor,
+                         paddingTop: 16,
+                         leading: leadingAnchor,
+                         paddingLeft: 16,
+                         bottom: bottomAnchor,
+                         paddingBottom: 16,
+                         trailing: trailingAnchor,
+                         paddingRight: 16)
     }
     
     //MARK: - Setup

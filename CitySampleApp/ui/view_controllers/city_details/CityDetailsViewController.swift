@@ -60,7 +60,7 @@ class CityDetailsViewController: BaseViewController, BindableView {
         
         favoriteButton = UIButton()
         view.addSubview(favoriteButton)
-        favoriteButton.setImage(UIImage.favoriteImage, for: .normal)
+        updateButtonState()
         favoriteButton.layer.borderColor = UIColor.black.cgColor
         favoriteButton.layer.borderWidth = 1
         favoriteButton.anchor(leading: view.safeAreaLayoutGuide.leadingAnchor,
@@ -78,6 +78,13 @@ class CityDetailsViewController: BaseViewController, BindableView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(CityDetailsViewController.showVisitorsList))
         visitorsLabel.addGestureRecognizer(tap)
         visitorsLabel.isUserInteractionEnabled = true
+        
+        favoriteButton.addTarget(self, action: #selector(CityDetailsViewController.favoriteButtonAction), for: .touchUpInside)
+    }
+    
+    private func updateButtonState() {
+        let image = viewModel.isFavorite ? UIImage.favoriteImage : UIImage.unfavoriteImage
+        favoriteButton.setImage(image, for: .normal)
     }
     
     //MARK: - Data binding
@@ -90,6 +97,8 @@ class CityDetailsViewController: BaseViewController, BindableView {
             case .rating:
                 self?.ratingLabel.isHidden = false
                 self?.ratingLabel.text = value
+            case .favoriteSave:
+                self?.updateButtonState()
             }
         }
         
@@ -99,16 +108,27 @@ class CityDetailsViewController: BaseViewController, BindableView {
                 self?.visitorsLabel.isHidden = true
             case .rating:
                 self?.ratingLabel.isHidden = true
+            case .favoriteSave:
+                self?.updateButtonState()
             }
             
             self?.showAlert(message: error.localizedDescription, cancelTitle: "Cancel".localized)
         }
+        
+        viewModel.didLoadData = { [weak self] in
+            self?.hideLoading()
+        }
 
+        showLoading()
         viewModel.loadData()
     }
     
     //MARK: - Actions
     @objc func showVisitorsList() {
         viewModel.showVisitorsList()
+    }
+    
+    @objc func favoriteButtonAction() {
+        viewModel.setFavorite()
     }
 }

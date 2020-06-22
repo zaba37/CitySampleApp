@@ -14,7 +14,7 @@ class VisitorListViewModel: VisitorListViewModelType {
     @Injected private var sceneCoordinator: SceneCoordinatorType
     
     //MARK: - Private properties
-    private var visitorsCellViewModels = [VisitorCellViewModel]()
+    private var visitorCellViewModels = [VisitorCellViewModel]()
     
     //MARK: - Public properties
     let cellViewModelTypes: [CellViewModelType.Type] = [VisitorCellViewModel.self]
@@ -29,19 +29,19 @@ class VisitorListViewModel: VisitorListViewModelType {
     
     //MARK: - Utils
     private func prepareViewModels(for visitorsList: [Visitor]) {
-        visitorsCellViewModels = visitorsList.map { VisitorCellViewModel(visitor: $0) }
+        visitorCellViewModels = visitorsList.map { VisitorCellViewModel(visitor: $0) }
         didUpdate?()
     }
     
     //MARK: - Getters
     var visitorsCount: Int {
-        return visitorsCellViewModels.count
+        return visitorCellViewModels.count
     }
     
     func visitorViewModel(atRow row: Int) -> VisitorCellViewModel? {
         guard 0 ..< visitorsCount ~= row else {
             return nil
         }
-        return visitorsCellViewModels[row]
+        return visitorCellViewModels[row]
     }
 }

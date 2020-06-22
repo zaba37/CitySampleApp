@@ -15,6 +15,8 @@ protocol CityListViewModelType {
     var citiesCount: Int { get }
     
     func loadData()
+    func onViewDidAppear()
+    func toggleFavoriteFilter()
     func cityViewModel(atRow row: Int) -> CityCellViewModel?
     func onSelect(row: Int)
 }

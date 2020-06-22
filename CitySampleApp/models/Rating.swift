@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct Rating: Codable {
+class Rating {
     var id: String
     var rating: Float
     
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case rating
+    init(model: RatingResponseModel) {
+        self.id = model.id
+        self.rating = model.rating
     }
 }

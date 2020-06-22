@@ -11,9 +11,12 @@ import Foundation
 protocol CityDetailsViewModelType {
     var previewUrl: String { get }
     var cityName: String { get }
-    var didUpdate: ((DetailUpdateType, String)->())? { get set }
+    var isFavorite: Bool { get }
+    var didUpdate: ((DetailUpdateType, String?)->())? { get set }
     var didError: ((DetailUpdateType, Error)->())? { get set }
+    var didLoadData: (() -> ())? { get set }
     
     func loadData()
+    func setFavorite()
     func showVisitorsList() 
 }

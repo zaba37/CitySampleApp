@@ -8,12 +8,17 @@
 
 import Foundation
 
-struct Visitor: Codable {
+class Visitor {
     var id: String
     var name: String
+
+    init(id: String, name: String) {
+        self.id = id
+        self.name = name
+    }
     
-    enum CodingKeys: String, CodingKey {
-        case id = "_id"
-        case name
+    init(model: VisitorResponseModel) {
+        self.id = model.id
+        self.name = model.name
     }
 }

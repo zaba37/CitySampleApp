@@ -10,5 +10,6 @@ import Foundation
 
 protocol CityCellViewModelType {
     var cityName: String { get }
-    var previewUrl: String { get } 
+    var previewUrl: String { get }
+    var isFavorite: Bool { get }
 }
