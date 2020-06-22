@@ -56,7 +56,7 @@ class CityListViewModel: CityListViewModelType {
     
     //MARK - Actions
     func onSelect(row: Int) {
-//        guard let selected = cityViewModel(atRow: row) else { return }
-//        sceneCoordinator.transition(to: WeatherScene.forecast(city: selected.city), type: .push)
+        guard let selected = cityViewModel(atRow: row) else { return }
+        sceneCoordinator.transition(to: CityScene.cityDetails(city: selected.city), type: .push)
     }
 }

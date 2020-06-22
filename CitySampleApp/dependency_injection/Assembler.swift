@@ -61,21 +61,21 @@ struct Assembler {
             return CityListViewModel()
         }
 
-//        resolver.register(CityForecastViewModelType.self) { (r, city: City) in
-//            return CityForecastViewModel(city: city)
-//        }
+        resolver.register(CityDetailsViewModelType.self) { (r, city: City) in
+            return CityDetailsViewModel(city: city)
+        }
         
         //MARK: - ViewControllers
         resolver.register(CityListViewController.self) { r in
             return CityListViewController()
         }
 
-//        resolver.register(CityForecastViewController.self) { (r, city: City) in
-//            let vc = CityForecastViewController()
-//            let vm = r.resolve(CityForecastViewModelType.self, arg: city)!
-//            vc.$viewModel.wrappedValue = vm
-//            return vc
-//        }
+        resolver.register(CityDetailsViewController.self) { (r, city: City) in
+            let vc = CityDetailsViewController()
+            let vm = r.resolve(CityDetailsViewModelType.self, arg: city)!
+            vc.$viewModel.wrappedValue = vm
+            return vc
+        }
         
     }
 }

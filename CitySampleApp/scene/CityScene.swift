@@ -10,6 +10,7 @@ import UIKit
 
 enum CityScene {
     case cityList
+    case cityDetails(city: City)
 }
 
 extension CityScene: SceneType {
@@ -17,6 +18,8 @@ extension CityScene: SceneType {
         switch self {
         case .cityList:
             return Resolver.root.resolve(CityListViewController.self)
+        case .cityDetails(let city):
+            return Resolver.root.resolve(CityDetailsViewController.self, arg: city)
         }
     }
 }
