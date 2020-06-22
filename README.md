@@ -1,6 +1,7 @@
 # Sample application
 
 Startup:
+
 The project does not contain any dependencies, running the application on the simulator does not require any changes. To run the application on the device, a change of Bundle ID and privisioning profile is required.
 
 - Xcode version - 11.3.1
