@@ -75,7 +75,7 @@ class CityDetailsViewModel: CityDetailsViewModelType {
     }
     
     //MARK: - Actions
-    func setFavorite() {
+    func toggleFavorite() {
         let model = city
         
         do {

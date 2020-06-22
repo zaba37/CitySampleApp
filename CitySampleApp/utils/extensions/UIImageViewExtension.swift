@@ -12,10 +12,11 @@ let imageCache = NSCache<NSString, UIImage>()
 
 extension UIImageView {
     func loadImageUsingCache(withUrl urlString : String) {
-        let url = URL(string: urlString)
-        if url == nil {return}
-        self.image = nil
-
+        image = nil
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        
         if let cachedImage = imageCache.object(forKey: urlString as NSString)  {
             self.image = cachedImage
             return
@@ -27,18 +28,17 @@ extension UIImageView {
         activityIndicator.startAnimating()
         activityIndicator.center = self.center
 
-        URLSession.shared.dataTask(with: url!, completionHandler: { (data, response, error) in
-            if error != nil {
-                print(error!)
-                return
-            }
-
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
             DispatchQueue.main.async {
-                if let image = UIImage(data: data!) {
-                    imageCache.setObject(image, forKey: urlString as NSString)
-                    self.image = image
+                guard let data = data, let image = UIImage(data: data) else {
+                    self.image = nil
                     activityIndicator.removeFromSuperview()
+                    return
                 }
+
+                imageCache.setObject(image, forKey: urlString as NSString)
+                self.image = image
+                activityIndicator.removeFromSuperview()
             }
 
         }).resume()

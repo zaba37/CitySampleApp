@@ -44,7 +44,6 @@ struct Assembler {
 
         resolver.register(CityNetworkType.self) { r in
             let sessionConfig = URLSessionConfiguration.ephemeral
-            //sessionConfig.protocolClasses = [UrlProtocolMock.self]
             let session = r.resolve(URLSession.self, arg: sessionConfig)!
             let network = r.resolve(NetworkType.self, arg: session)!
             let cityNetwork = CityNetwork()

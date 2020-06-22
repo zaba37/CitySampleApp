@@ -17,6 +17,6 @@ protocol CityDetailsViewModelType {
     var didLoadData: (() -> ())? { get set }
     
     func loadData()
-    func setFavorite()
+    func toggleFavorite()
     func showVisitorsList() 
 }

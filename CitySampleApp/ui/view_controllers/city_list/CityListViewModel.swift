@@ -11,7 +11,7 @@ import Foundation
 class CityListViewModel: CityListViewModelType {
     
     //MARK: - Injected properties
-    @Injected private var network: CityNetworkType
+    @Injected var network: CityNetworkType
     @Injected private var sceneCoordinator: SceneCoordinatorType
     @Injected private var database: DatabaseServiceType
     
@@ -65,7 +65,7 @@ class CityListViewModel: CityListViewModelType {
     }
     
     //MARK: - Utils
-    func onViewDidAppear() {
+    func onViewWillAppear() {
         cityCellViewModels.forEach { (model) in
             model.city.setFavorite(isFovrite: self.database.isFavorite(model: model.city))
         }

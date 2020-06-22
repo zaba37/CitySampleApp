@@ -12,9 +12,7 @@ import Foundation
 
 class TestRouterData {
     static let cityListData: [CityResponseModel] = {
-        guard let path = Bundle(for: TestRouterData.self).path(forResource: "city_list", ofType: "json")
-            , let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path))
-            , let cityList = try? JSONDecoder().decode([CityResponseModel].self, from: jsonData) else {
+        guard let cityList = try? JSONDecoder().decode([CityResponseModel].self, from: TestNetworkData.cityListData) else {
                 return []
         }
         
@@ -22,9 +20,7 @@ class TestRouterData {
     }()
     
     static let visitorsData: [VisitorResponseModel] = {
-        guard let path = Bundle(for: TestRouterData.self).path(forResource: "city_visitors", ofType: "json")
-            , let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path))
-            , let visitorList = try? JSONDecoder().decode([VisitorResponseModel].self, from: jsonData) else {
+        guard let visitorList = try? JSONDecoder().decode([VisitorResponseModel].self, from: TestNetworkData.visitorsData) else {
                 return []
         }
         
@@ -32,9 +28,7 @@ class TestRouterData {
     }()
 
     static let ratingtData: RatingResponseModel = {
-        guard let path = Bundle(for: TestRouterData.self).path(forResource: "city_rating", ofType: "json")
-            , let jsonData = try? Data(contentsOf: URL(fileURLWithPath: path))
-            , let rating = try? JSONDecoder().decode(RatingResponseModel.self, from: jsonData) else {
+        guard let rating = try? JSONDecoder().decode(RatingResponseModel.self, from: TestNetworkData.ratingtData) else {
                 return RatingResponseModel(id: "1", rating: 0)
         }
         

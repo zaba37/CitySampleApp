@@ -129,6 +129,6 @@ class CityDetailsViewController: BaseViewController, BindableView {
     }
     
     @objc func favoriteButtonAction() {
-        viewModel.setFavorite()
+        viewModel.toggleFavorite()
     }
 }

@@ -15,6 +15,7 @@ class CityListViewController: BaseViewController, BindableView {
     
     //MARK: - Private properties
     private var tableView: UITableView!
+    private var refreshControl = UIRefreshControl()
     
     //MARK: - Life cycle
     override func viewDidLoad() {
@@ -24,9 +25,9 @@ class CityListViewController: BaseViewController, BindableView {
         bindViewModel()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.onViewDidAppear()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        viewModel.onViewWillAppear()
     }
     
     //MARK: - UISetup
@@ -59,27 +60,43 @@ class CityListViewController: BaseViewController, BindableView {
                                            target: self,
                                            action: #selector(CityListViewController.favoriteFilterAction))
         navigationItem.rightBarButtonItem = filterButton
+        
+        refreshControl.addTarget(self, action: #selector(CityListViewController.refresh(_:)), for: .valueChanged)
+        tableView.addSubview(refreshControl)
     }
     
     //MARK: - Data binding
     func bindViewModel() {
         viewModel.didUpdate = { [weak self] in
-            self?.hideLoading()
+            self?.hideLoadings()
             self?.tableView.reloadData()
         }
         
         viewModel.didError = { [weak self] error in
-            self?.hideLoading()
+            self?.hideLoadings()
             self?.showAlert(message: error.localizedDescription, cancelTitle: "Cancel".localized)
         }
 
+        loadData()
+    }
+    
+    private func loadData() {
         showLoading()
         viewModel.loadData()
     }
 
+    private func hideLoadings() {
+        hideLoading()
+        refreshControl.endRefreshing()
+    }
+    
     //MARK: - Action
     @objc func favoriteFilterAction() {
         viewModel.toggleFavoriteFilter()
+    }
+    
+    @objc func refresh(_ sender: AnyObject) {
+        loadData()
     }
 }
 
